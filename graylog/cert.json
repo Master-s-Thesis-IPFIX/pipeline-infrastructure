@@ -1,0 +1,10 @@
+{
+    "enterprise_number": 6871,
+    "information_elements": [
+      {
+        "element_id": 33,
+        "name": "silkAppLabel",
+        "data_type": "unsigned16"
+      }
+    ]
+  }

@@ -1,0 +1,10 @@
+{
+    "enterprise_number": 1337,
+    "information_elements": [
+      {
+        "element_id": 1,
+        "name": "maltrail",
+        "data_type": "string"
+      }
+    ]
+  }
