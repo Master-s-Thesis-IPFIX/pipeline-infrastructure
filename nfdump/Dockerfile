@@ -14,6 +14,7 @@ RUN wget https://github.com/phaag/nfdump/archive/refs/tags/v1.7.4.tar.gz -O nfdu
 RUN tar -xzf nfdump.tar.gz -C nfdump --strip-components=1
 
 WORKDIR /build/nfdump
+#RUN ./autogen.sh && ./configure --enable-devel && make && make install
 RUN ./autogen.sh && ./configure && make && make install
 
 ENTRYPOINT [ "nfcapd", "-E" , "-p" , "8888" , "-w", "/data" ]

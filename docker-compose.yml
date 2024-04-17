@@ -14,15 +14,25 @@ services:
     restart: always
     network_mode: host
     depends_on:
-      - graylog
       - nfdump
       - silk
+      - maltrail
 
   nfdump:
     build: ./nfdump
     restart: always
     ports:
       - 8888:8888/udp
+
+  maltrail:
+    build: ./maltrail
+    restart: always
+    ports:
+      - 18001:18001
+    depends_on:
+      - graylog
+    volumes:
+      - graylog:/root/.maltrail
 
   silk:
     build: ./SiLK
@@ -57,4 +67,7 @@ services:
   
   mongo:
     image: mongo:6.0
+
+volumes:
+  graylog:
 
