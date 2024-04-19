@@ -1,0 +1,23 @@
+formatter:
+  fields:
+    - maltrail
+    - reversePacketTotalCount
+  protobuf:
+    - name: maltrail
+      index: 1001
+      type: string
+      array: false
+    - name: reversePacketTotalCount
+      index: 1002
+      type: varint
+      array: false
+ipfix:
+  mapping:
+    - field: 1
+      destination: maltrail
+      penprovided: true
+      pen: 420
+    - field: 86
+      destination: reversePacketTotalCount
+      penprovided: true
+      pen: 29305

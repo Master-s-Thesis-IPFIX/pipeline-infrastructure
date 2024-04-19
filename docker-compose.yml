@@ -16,7 +16,7 @@ services:
     depends_on:
       - nfdump
       - silk
-      - maltrail
+      - goflow
 
   nfdump:
     build: ./nfdump
@@ -24,15 +24,21 @@ services:
     ports:
       - 8888:8888/udp
 
-  maltrail:
-    build: ./maltrail
+  goflow:
+    build: ./goflow
     restart: always
     ports:
-      - 18001:18001
-    depends_on:
-      - graylog
-    volumes:
-      - graylog:/root/.maltrail
+      - 2055:2055/udp
+
+#  maltrail:
+#    build: ./maltrail
+#    restart: always
+#    ports:
+#      - 18001:18001
+#    depends_on:
+#      - graylog
+#    volumes:
+#      - graylog:/root/.maltrail
 
   silk:
     build: ./SiLK
