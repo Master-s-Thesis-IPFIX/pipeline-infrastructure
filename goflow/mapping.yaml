@@ -2,6 +2,7 @@ formatter:
   fields:
     - maltrail
     - reversePacketTotalCount
+    - nonexists
   protobuf:
     - name: maltrail
       index: 1001
@@ -11,10 +12,18 @@ formatter:
       index: 1002
       type: varint
       array: false
+    - name: nonexists
+      index: 1003
+      type: string
+      array: false
 ipfix:
   mapping:
     - field: 1
       destination: maltrail
+      penprovided: true
+      pen: 420
+    - field: 2
+      destination: nonexists
       penprovided: true
       pen: 420
     - field: 86
