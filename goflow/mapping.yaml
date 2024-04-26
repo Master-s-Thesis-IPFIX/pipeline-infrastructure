@@ -1,32 +1,119 @@
 formatter:
   fields:
-    - maltrail
+    # goFlow
+    - src_addr
+    - dst_addr
+    - src_port
+    - dst_port
+    - proto
+    - bytes
+    - packets
+
+    # ipfix
+    - packetTotalCount
+    - octetTotalCount
+    - packetDeltaCount
+    - octetDeltaCount
+
+    # Reverse 29305
     - reversePacketTotalCount
-    - nonexists
+    - reverseOctetTotalCount
+    - reversePacketDeltaCount
+    - reverseOctetDeltaCount
+
+    # CERT 6871
+    - silkAppLabel
+
+    # Tuebingen 420
+    - maltrail
+
   protobuf:
-    - name: maltrail
+    # ipfix
+    - name: packetTotalCount
       index: 1001
-      type: string
+      type: varint
       array: false
-    - name: reversePacketTotalCount
+    - name: octetTotalCount
       index: 1002
       type: varint
       array: false
-    - name: nonexists
+    - name: packetDeltaCount
       index: 1003
+      type: varint
+      array: false
+    - name: octetDeltaCount
+      index: 1004
+      type: varint
+      array: false
+
+    # Reverse 29305
+    - name: reversePacketTotalCount
+      index: 1011
+      type: varint
+      array: false
+    - name: reverseOctetTotalCount
+      index: 1012
+      type: varint
+      array: false
+    - name: reversePacketDeltaCount
+      index: 1013
+      type: varint
+      array: false
+    - name: reverseOctetDeltaCount
+      index: 1014
+      type: varint
+      array: false
+    
+    # CERT 6871
+    - name: silkAppLabel
+      index: 1021
+      type: varint
+      array: false
+    
+    # Tuebingen 420
+    - name: maltrail
+      index: 1006
       type: string
       array: false
+
 ipfix:
   mapping:
+    # ifpix
     - field: 1
-      destination: maltrail
-      penprovided: true
-      pen: 420
+      destination: octetDeltaCount
     - field: 2
-      destination: nonexists
-      penprovided: true
-      pen: 420
+      destination: packetDeltaCount
+    - field: 85
+      destination: octetTotalCount
+    - field: 86
+      destination: packetTotalCount
+    
+    # Reverse 29305
     - field: 86
       destination: reversePacketTotalCount
       penprovided: true
       pen: 29305
+    - field: 85
+      destination: reverseOctetTotalCount
+      penprovided: true
+      pen: 29305
+    - field: 2
+      destination: reversePacketDeltaCount
+      penprovided: true
+      pen: 29305
+    - field: 1
+      destination: reverseOctetDeltaCount
+      penprovided: true
+      pen: 29305
+    
+    # CERT 6871
+    - field: 33
+      destination: silkAppLabel
+      penprovided: true
+      pen: 6871
+    
+    # Tuebingen 420
+    - field: 1
+      destination: maltrail
+      penprovided: true
+      pen: 420
