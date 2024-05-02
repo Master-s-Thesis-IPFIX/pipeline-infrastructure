@@ -1,4 +1,7 @@
 formatter:
+  render:
+    maltrail: string
+    dnsName: string
   fields:
     # goFlow
     - src_addr
@@ -26,6 +29,8 @@ formatter:
 
     # Tuebingen 420
     - maltrail
+    - dnsName
+    - dnsType
 
   protobuf:
     # ipfix
@@ -72,8 +77,16 @@ formatter:
     
     # Tuebingen 420
     - name: maltrail
-      index: 1006
+      index: 1031
       type: string
+      array: false
+    - name: dnsName
+      index: 1032
+      type: string
+      array: false
+    - name: dnsType
+      index: 1033
+      type: varint
       array: false
 
 ipfix:
@@ -115,5 +128,13 @@ ipfix:
     # Tuebingen 420
     - field: 1
       destination: maltrail
+      penprovided: true
+      pen: 420
+    - field: 2
+      destination: dnsName
+      penprovided: true
+      pen: 420
+    - field: 3
+      destination: dnsType
       penprovided: true
       pen: 420
