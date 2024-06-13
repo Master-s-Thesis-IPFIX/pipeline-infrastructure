@@ -5,7 +5,7 @@ ARG PYBFIXBUF_VERSION=0.9.0
 
 RUN mkdir /build /build/libfixbuf /build/pyfixbuf
 
-RUN apt-get update && apt-get install -y libpcap-dev
+RUN apt-get update && apt-get install -y libpcap-dev parallel
 
 WORKDIR /build 
 
