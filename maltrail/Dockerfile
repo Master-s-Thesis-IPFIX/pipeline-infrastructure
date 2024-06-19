@@ -29,4 +29,4 @@ WORKDIR /maltrail
 RUN pip install -r requirements.txt 
 
 #ENTRYPOINT [ "python", "sensor.py", "--ipfix", "-p", "ipfix_info_export", "--ipfix_export_host", "graylog" ]
-ENTRYPOINT [ "./run_parallel.sh", "-n" ,"10", "-p", "2055", "-host", "goflow"]
+ENTRYPOINT [ "./run_parallel.sh", "-n" ,"10", "-p", "18000", "-host", "goflow"]
