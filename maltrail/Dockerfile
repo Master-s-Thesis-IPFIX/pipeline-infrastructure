@@ -22,7 +22,7 @@ WORKDIR /build/pyfixbuf
 RUN python setup.py build && python setup.py install && ldconfig
 
 WORKDIR /
-ADD "https://api.github.com/repos/JSteegmueller/maltrail/commits?per_page=1" latest_commit
+ADD "https://api.github.com/repos/JSteegmueller/maltrail/commits?per_page=1&sha=feature/ipfix" latest_commit
 RUN git clone -b feature/ipfix https://github.com/JSteegmueller/maltrail.git
 
 WORKDIR /maltrail
