@@ -20,7 +20,7 @@ WORKDIR /build/pyfixbuf
 RUN python setup.py build && python setup.py install && ldconfig
 
 WORKDIR /
-ADD "https://api.github.com/repos/JSteegmueller/ipfix-demux/commits/0720f1d9a54a5b72fec4b7028d3446e394b0f169?per_page=1" latest_commit
+ADD "https://api.github.com/repos/JSteegmueller/ipfix-demux/commits?per_page=1" latest_commit
 RUN git clone https://github.com/JSteegmueller/ipfix-demux.git
 
 WORKDIR /ipfix-demux
