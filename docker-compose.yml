@@ -35,7 +35,8 @@ services:
     build: ./maltrail
     restart: always
     ports:
-      - "18000-18100:18000-18100"
+      - "19000-19100:19000-19100"
+      - "19000-19100:19000-19100/udp"
     depends_on:
       - graylog
     volumes:
