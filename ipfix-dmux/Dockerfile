@@ -24,4 +24,12 @@ ADD "https://api.github.com/repos/JSteegmueller/ipfix-demux/commits?per_page=1" 
 RUN git clone https://github.com/JSteegmueller/ipfix-demux.git
 
 WORKDIR /ipfix-demux
-ENTRYPOINT [ "python", "-u", "main.py" ,"--malfix_instances", "1", "--malfix_hostname", "127.0.0.1", "--malfix_protocol", "tcp"]
+ENTRYPOINT [\
+                "python", "-u", "main.py" ,         \
+                "--malfix_instances", "1",          \
+                "--malfix_hostname", "127.0.0.1",   \
+                "--malfix_protocol", "tcp",         \
+                "--max_flows", "200000",            \
+                "--malicious_percentage", "50",     \
+                "--malicious_types", "dns,ip"       \
+            ]
