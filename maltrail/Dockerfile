@@ -28,5 +28,5 @@ RUN git clone -b feature/ipfix https://github.com/JSteegmueller/maltrail.git
 WORKDIR /maltrail
 RUN pip install -r requirements.txt 
 
-#ENTRYPOINT [ "python", "sensor.py", "--ipfix", "-p", "ipfix_info_export", "--ipfix_export_host", "graylog" ]
-ENTRYPOINT [ "./run_parallel.sh", "-n" ,"1", "-h", "goflow", "-P", "tcp"]
+ENTRYPOINT [ "./run_parallel.sh" ]
+CMD [ "-n" ,"1", "-h", "goflow", "-P", "tcp" ]
