@@ -1,0 +1,5 @@
+sudo docker compose run --service-ports --build maltrail -n 32 -h steegmueller-4 -P tcp
+
+sudo docker build . -t demux && sudo docker run --network host demux --malfix_instances 4 --malfix_hostname steegmueller-2 --malfix_protocol tcp --max_flows 10000 --malicious_percentage 100 --malicious_types dns,ip --benchmark
+
+ssh -L 19000:localhost:19000 -L 19001:localhost:19001 -L 19002:localhost:19002 -L 19003:localhost:19003 student@steegmueller-2.vm.kn-testbed.net
