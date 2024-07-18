@@ -2,6 +2,11 @@ formatter:
   render:
     maltrail: string
     dnsName: string
+    malfix_type: string
+    malfix_trail: string
+    malfix_info: string
+    malfix_reference: string
+
   fields:
     # goFlow
     - src_addr
@@ -28,9 +33,12 @@ formatter:
     - silkAppLabel
 
     # Tuebingen 420
-    - maltrail
     - dnsName
     - dnsType
+    - malfix_type
+    - malfix_trail
+    - malfix_info
+    - malfix_reference
 
   protobuf:
     # ipfix
@@ -76,17 +84,29 @@ formatter:
       array: false
     
     # Tuebingen 420
-    - name: maltrail
+    - name: dnsName
       index: 1031
       type: string
       array: false
-    - name: dnsName
+    - name: dnsType
       index: 1032
+      type: varint
+      array: false
+    - name: malfix_type
+      index: 1033
       type: string
       array: false
-    - name: dnsType
-      index: 1033
-      type: varint
+    - name: malfix_trail
+      index: 1034
+      type: string
+      array: false
+    - name: malfix_info
+      index: 1035
+      type: string
+      array: false
+    - name: malfix_reference
+      index: 1036
+      type: string
       array: false
 
 ipfix:
@@ -127,14 +147,26 @@ ipfix:
     
     # Tuebingen 420
     - field: 1
-      destination: maltrail
-      penprovided: true
-      pen: 420
-    - field: 2
       destination: dnsName
       penprovided: true
       pen: 420
-    - field: 3
+    - field: 2
       destination: dnsType
+      penprovided: true
+      pen: 420
+    - field: 3
+      destination: malfix_type
+      penprovided: true
+      pen: 420
+    - field: 4
+      destination: malfix_trail
+      penprovided: true
+      pen: 420
+    - field: 5
+      destination: malfix_info
+      penprovided: true
+      pen: 420
+    - field: 6
+      destination: malfix_reference
       penprovided: true
       pen: 420
