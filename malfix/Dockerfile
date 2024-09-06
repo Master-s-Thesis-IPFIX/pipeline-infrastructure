@@ -5,6 +5,8 @@ ARG PYBFIXBUF_VERSION=0.9.0
 
 RUN mkdir /build /build/libfixbuf /build/pyfixbuf
 
+RUN apt-get update && apt-get install -y libpcap-dev parallel
+
 WORKDIR /build 
 
 RUN wget https://tools.netsa.cert.org/releases/libfixbuf-${LIBFIXBUF_VERSION}.tar.gz -O libfixbuf.tar.gz &&\
@@ -20,16 +22,11 @@ WORKDIR /build/pyfixbuf
 RUN python setup.py build && python setup.py install && ldconfig
 
 WORKDIR /
-ADD "https://api.github.com/repos/JSteegmueller/ipfix-demux/commits?per_page=1" latest_commit
-RUN git clone https://github.com/JSteegmueller/ipfix-demux.git
+ADD "https://api.github.com/repos/Master-s-Thesis-IPFIX/malfix/commits?per_page=1&sha=feature/ipfix" latest_commit
+RUN git clone -b feature/ipfix https://github.com/Master-s-Thesis-IPFIX/malfix.git
 
-WORKDIR /ipfix-demux
-ENTRYPOINT [ "python", "-u", "main.py" ]
-CMD  [\
-        "--malfix_instances", "1",          \
-        "--malfix_hostname", "127.0.0.1",   \
-        "--malfix_protocol", "tcp",         \
-        "--max_flows", "200000",            \
-        "--malicious_percentage", "50",     \
-        "--malicious_types", "dns,ip"       \
-    ]
+WORKDIR /malfix
+RUN pip install -r requirements.txt 
+
+ENTRYPOINT [ "./run_parallel.sh" ]
+CMD [ "-n" ,"4", "-h", "goflow2", "-P", "tcp", "-", "--ipfix_pass_through" ]
