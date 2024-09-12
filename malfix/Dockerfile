@@ -29,4 +29,4 @@ WORKDIR /malfix
 RUN pip install -r requirements.txt 
 
 ENTRYPOINT [ "./run_parallel.sh" ]
-CMD [ "-n" ,"4", "-h", "goflow2", "-P", "tcp", "-", "--ipfix_pass_through" ]
+CMD [ "-n" ,"4", "-h", "goflow2", "-P", "tcp", "-", "--ipfix_forward" ]
