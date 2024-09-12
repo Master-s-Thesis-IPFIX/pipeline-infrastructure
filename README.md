@@ -25,9 +25,6 @@ The `ipfix-load-balancer` service distributes IPFIX (IP Flow Information Export)
 ### geo-anomaly-detection
 The `geo-anomaly-detection` service analyzes geolocation data to detect anomalies and irregularities. It relies on Kafka for real-time data streaming and processing.
 
-### kafka-ui
-`kafka-ui` provides a user interface for managing and monitoring Kafka topics and messages. It simplifies the process of interacting with Kafka and visualizing the data flow.
-
 ## Volumes
 
 - **malfix**: This volume is used by the `malfix` service to persist its data, ensuring that analysis results are retained across container restarts.
