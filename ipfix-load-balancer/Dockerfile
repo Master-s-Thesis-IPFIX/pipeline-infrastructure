@@ -24,6 +24,8 @@ ADD "https://api.github.com/repos/Master-s-Thesis-IPFIX/ipfix-load-balancer/comm
 RUN git clone https://github.com/Master-s-Thesis-IPFIX/ipfix-load-balancer.git
 
 WORKDIR /ipfix-load-balancer
+RUN pip install -r requirements.txt 
+
 ENTRYPOINT [ "python", "-u", "main.py" ]
 CMD  [\
         "--malfix_instances", "4",          \
