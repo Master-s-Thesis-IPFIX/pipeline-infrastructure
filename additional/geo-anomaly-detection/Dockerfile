@@ -1,5 +1,7 @@
 FROM python:3.10
 
+RUN apt-get update && apt-get install git-lfs
+
 WORKDIR /
 ADD "https://api.github.com/repos/Master-s-Thesis-IPFIX/geo-anomaly-detection/commits?per_page=1" latest_commit
 RUN git clone https://github.com/Master-s-Thesis-IPFIX/geo-anomaly-detection.git
